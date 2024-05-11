@@ -1,37 +1,39 @@
-import {createBrowserRouter,RouterProvider} from 'react-router-dom'
-import Sample from './Pages/Sample'
-import Hello from './Pages/Hello'
-import Userreducer from './Pages/Userreducer'
+import {createBrowserRouter,RouterProvider,createRoutesFromElements,Route} from 'react-router-dom'
+import Cart from "./Pages/Cart"
+import Mainpage from "./Pages/Mainpage"
+import Layout from './Pages/Layout'
+import Notfoundpage from './Pages/Notfoundpage'
+import Usememo1 from './Pages/Usememo1'
+
 
 
 
 function App() {
 
-  console.log("hello hello");
-  
-  const rijo=createBrowserRouter([
-    {
-      path:'/',
-      element:<Sample />
-    },
-    {
-      path:'hello',
-      element:<Hello/>
-    },
-    {
-      path:"reducer",
-      element:<Userreducer/>
-    }
-  
-   
-  ])
+  const router=createBrowserRouter(
+    createRoutesFromElements(
+      <>
+      <Route path='/' element={<Layout/>}>
+<Route index element={<Mainpage/>}/>
+<Route path='/cart' element={<Cart/>}/>
+<Route path='/memo' element={<Usememo1/>}/>
+      </Route>
+      <Route path='*' element={<Notfoundpage/>}/>
+      </>
+    )
+  )
+
+
 
 
   return (
 
-     <RouterProvider router={rijo}></RouterProvider>
+<>
 
+<RouterProvider router={router}/>
 
+</>
+  
   
   )
 }
